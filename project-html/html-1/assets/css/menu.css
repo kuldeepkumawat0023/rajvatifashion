@@ -1,0 +1,149 @@
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {.menu-item-has-children > a::after {line-height: 22px;}
+}
+button.sub-menu-toggle {display: none;}
+@media (min-width: 1200px) {
+.navbar-collapse ul {margin: 0;padding: 0px;}
+    .navbar-collapse .menu-top-menu-container > ul > li { list-style: none; position: relative; margin: 0px; padding: 0 0 0 0; display: inline-block; font-size: 18px; letter-spacing: 0px; line-height: 22px;  color: var(--paraColor); font-weight: 400; font-family: var(--paraFont);}
+.navbar-collapse ul li a {vertical-align: middle;margin: 0 0px;display: block;           padding: 20px 24px;color: var(--paraColor);z-index: 1;}
+/* .navbar-collapse .menu-top-menu-container>ul li.current-menu-item a::before, .navbar-collapse .menu-top-menu-container>ul li:hover a::before {content: '';background: transparent;height: 100%;width: 100%;position: absolute;top: 0;left: 0;right: 0;z-index: -1;transition: all 0.5s;border-bottom: 5px solid #098cb5;}
+ */
+.navbar-collapse .menu-top-menu-container>ul li:hover a, .navbar-collapse .menu-top-menu-container>ul li.current-menu-item a { color: var(--colorRed);
+background: #fff;}
+.header-section.sticky .navbar-collapse .menu-top-menu-container>ul li:hover a, .header-section.sticky .navbar-collapse .menu-top-menu-container>ul li.current-menu-item a { color: var(--colorRed);}
+.navbar-collapse.collapse {display: block!important;}
+.navbar-toggle {display: none;}
+.navbar-collapse .menu-top-menu-container > ul > li a {position: relative;}
+.menu-item-has-children > a:after {content:"\f107";font-family:"Font Awesome 5 Free"; color: #666;font-size: 18px;margin-left: 5px;margin-top: 0px;transition: 1s;text-align: center;position: relative;top: 1px;line-height: 13px;font-weight: 900}
+ /* .navbar-collapse .menu-top-menu-container>ul li:hover > a::after, .navbar-collapse .menu-top-menu-container>ul li.current-menu-item> a::after{background: #547481;}
+  */
+.menu-item-has-children > ul > li.menu-item-has-children > a:after {content: "\f105";font-family:"Font Awesome 5 Free";margin-left: 0;font-size: 16px;float: right;margin-top: 0;width: auto;height: auto;background: none;color: var(--colorRed);position: absolute;right: 15px;top: 13px;bottom: auto;left: auto;font-weight: 900}
+.navbar-collapse > ul > li.menu-item-has-children:hover > a::after {content: "\f106";color: var(--colorRed)}
+.menu-item-has-children:hover > a:after {color: var(--colorRed)}
+.menu-item-has-children ul {position: absolute;width: 238px;list-style: none;text-align: left;z-index: 999;top: 110%;display: block !important;padding: 0 0 0;left: 0px;visibility: hidden;transform: scale(1, 0);transition: all 0.5s;transform-origin: top center;opacity: 0;}
+.menu-item-has-children ul li {position: relative;width: 100%;float: left;padding: 0 !important;text-align: left;margin: 0px 0 0 !important;  border-bottom: 1px solid rgb(201 201 201);transition: 1s;border-right: none;border-radius: 0;background: #f1f1f1;}
+.menu-item-has-children ul li:last-child {border-bottom: none;border-radius: 0 0 8px 8px;}
+.menu-item-has-children ul li:last-child a {border-radius: 0 0 8px 8px;}
+.menu-item-has-children ul li.active >a {color: #fff !important;}
+.menu-item-has-children ul li a {margin-left: 0;color: #000 !important;white-space: normal;width: 100%;float: none;text-decoration: none;text-align: left;padding: 10px 15px 10px 15px;display: block;-webkit-transition: all 0.3s ease-in 0s;transition: all 0.3s ease-in 0s;transition: all 0.3s ease-in 0s;font-size: 16px; letter-spacing: 0px; line-height: 22px;   font-weight: 500; font-family: var(--paraFont);   background-color: #f1f1f1 !important;}
+.menu-item-has-children ul li a:before {border-left: none;border-right: none;display: none;}
+.menu-item-has-children ul ul {position: absolute;list-style: none;text-align: left;padding-left: 0;z-index: 999;display: block;padding: 0px 0 0 0px;left: 100%;top: 0px !important;}
+.menu-item-has-children ul ul li {position: relative;width: 100%;float: left;}
+.menu-item-has-children ul ul li a:hover {color: #fff !important;position: relative;background-color: var(--colorRed) !important;} 
+.menu-item-has-children ul li:hover ul {opacity: 1;visibility: visible;}
+.menu-item-has-children:hover > ul {top: 100%;transform: scale(1);opacity: 1;visibility: visible;}
+.menu-item-has-children ul li a:hover {background-color: var(--colorRed) !important;color: #fff !important;padding-left: 20px;}
+.menu-item-has-children ul li:hover > a::after {color: #fff !important;}
+.menu-item-has-children>ul li:hover a::after, .navbar-collapse .menu-item-has-children>ul li.current-menu-item a::after {color: #fff !important;}
+.menu-item-has-children ul li:hover>a {color: #fff !important;background-color: var(--colorRed) !important;}
+.navbar-collapse .menu-top-menu-container > ul > li:last-child {margin-right: 0;border: none;}
+.menu-item-has-children ul li:last-child::before {display: none;}
+.navbar-collapse .menu-top-menu-container > ul > li:first-child a {
+    padding-left: 0;
+}
+}
+
+@media (max-width: 1599px) {
+
+.menu-bar .menu-item-has-children ul li a {padding: 10px 15px 10px 15px;}
+}
+@media (max-width: 1499px) {
+.menu-bar .menu-item-has-children ul li a {padding: 10px 15px 10px 15px;}
+.menu-bar .menu-item-has-children ul {left: 10px;}
+
+}
+@media (max-width: 1399px) {
+    .navbar-collapse ul li a {
+        padding: 10px 16px;
+    }
+.menu-bar .navbar-collapse .menu-top-menu-container > ul > li {font-size: 18px;}
+
+}
+@media (max-width: 1299px) {
+    .menu-bar .navbar-collapse .menu-top-menu-container > ul > li {
+        font-size: 16px;
+    }
+        .navbar-collapse ul li a {
+        padding: 10px 11px;
+    }
+.menu-bar .menu-item-has-children ul li a {padding: 10px 15px 10px 15px;}
+.menu-bar .menu-item-has-children ul {left: 0px;}
+}
+
+@media (max-width: 1199px) {
+.mobile-logo {display: block !important;width: 246px;padding: 0px 0px 20px;margin-left: 20px;text-align: left;}
+.navbar-collapse .menu-top-menu-container > ul > li:first-child {margin-left: 0px;}
+div#myNavbar.collapse.show {right: 0;}
+button:focus {outline: 0px dotted;outline: 0px auto;}
+.menu-item-has-children > a:after {font-size: 15px;display: none;}
+.main_navigation .navbar-inverse {position: unset;}
+.navbar-header {
+    position: absolute;
+    top: 84px;
+    right: 15px;
+    z-index: 999;
+    display: block;
+}
+.navbar-toggle.collapsed .icon-bar {background-color: #7D2B3C!important;width: 30px;height: 3px;float: left;}
+.navbar-toggle .icon-bar {background-color: #7D2B3C !important;width: 40px;height: 4px;}
+.navbar-toggle .icon-bar+.icon-bar {margin-top: 6px;}
+
+div#navbarOpened.openMenu {width: 100%;height: 100%;top: 0;left: 0;position: fixed;background: rgba(0, 0, 0, 0.47);z-index: 99;}
+    .navbar-toggle { height: 40px; cursor: pointer; width: 35px; background: none; right: 18px; float: right; padding: 0px 0px; margin: 0; z-index: 999999; position: fixed; top: 16px; transform: scale(0.7); -webkit-transform: scale(0.7); -moz-transform: scale(0.7); border: none; border-radius: 4px; display: block; border-color: transparent; }
+.navbar-toggle.collapsed {position: static;transform: scale(1);-webkit-transform: scale(1);-moz-transform: scale(1);height: 30px;width: 30px;}
+div#myNavbar {position: fixed;width: 350px;height: 100vh !important;z-index: 99;bottom: 0;top: 0;right: -100%;left: inherit;padding: 68px 0 20px;display: block !important;background: #000;background-size: cover;overflow-y: auto;}
+div#myNavbar.navbar-collapse.show {right: 0;}
+/* div#myNavbar::after {background: rgba(68, 68, 68, 0.9);top: 0;bottom: 0;width: 100%;height: 100%; position: fixed;}
+ */.navbar-collapse ul {text-align: left;margin: 0;display: block;padding: 0;position: relative;z-index: 9;float: left;width: 100%;}
+.navbar-collapse ul > li {display: block;float: left;width: 100%;margin-left: 0px !important;margin-top: 0px !important;padding: 0;border-right: none;margin: 0;}
+.navbar-collapse ul >li + li {border-top: solid 1px #2e3439;}
+.navbar-collapse ul > li > a {font-size: 16px;padding: 9px 15px;font-weight: 400;text-align: left;transform: skew(0deg);margin: 0px;color: #fff;display: block;font-family: 'Outfit';}
+.navbar-collapse ul > li > a:hover, .navbar-collapse ul > li.current-menu-item > a {color: #fff;background: #7D2B3C;}
+.navbar-collapse ul > li > a:focus {color: #fff;}
+.navbar-toggle.collapsed .icon-bar:first-child {transform: rotate(0deg);margin-top: 0px;}
+.navbar-toggle.collapsed .icon-bar:last-child {transform: rotate(0deg);margin-top: 6px;}
+.navbar-toggle .icon-bar:first-child {transform: rotate(45deg);margin-top: 6px;float: left;}
+.navbar-toggle .icon-bar:last-child {transform: rotate(-45deg);margin-top: -5px;float: left;}
+.navbar-toggle .icon-bar:nth-child(2) {display: none;}
+.navbar-toggle.collapsed .icon-bar:nth-child(2) {display: block;margin-top: 6px;width: 30px;}
+.menu-item-has-children .subItem {width: 43px;position: absolute;margin-top: 0;right: 0;z-index: 999;text-align: center;cursor: pointer;height: 42px;}
+    .menu-item-has-children .subItem:before {
+        content: '\f107';
+        font-family: 'Font Awesome 5 Free';
+        font-size: 18px;
+        float: left;
+        width: 100%;
+        color: #fff;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 900;
+    }
+.menu-item-has-children.parentMenuActive>.subItem:before {
+    content: '\f106';
+    color: #fff;
+}
+.navbar-collapse .menu-item-has-children ul li a {background: #262829;}
+.navbar-collapse .menu-item-has-children ul li a:hover {background: #7D2B3C;}
+.navbar-collapse .menu-item-has-children ul li ul li a {background: #000;color: #fff;}
+.navbar-collapse .menu-item-has-children ul li ul li a:hover {background: #7D2B3C;}
+.menu-item-has-children {position: unset;}
+.menu-item-has-children:hover > a:before {display: none;}
+.menu-item-has-children ul li {display: block;float: left;width: 100%;padding: 0;border: none;}
+.menu-item-has-children ul li + li {border-top: solid 1px #2e3439;}
+.menu-item-has-children ul li.active >a {color: #fff !important;}
+.menu-item-has-children ul li ul {background: #262829;left: 0;}
+body.open-menu div#myNavbar {animation: slide-in-right 0.6s forwards;}
+@keyframes slide-in-right {0% {right:-100%;}
+100% {right:0px;}
+}
+@keyframes slide-out-right {0% {right:0px;}
+100% {right:-100%;}
+}
+
+}
+
+@media (max-width: 767px ) {div#myNavbar2 {width: 100%;}
+    .navbar-header { top: 87px; }
+}
+@media (max-width: 480px ) {.navbar-inverse .navbar-collapse.collapse {top: 53px;}
+}
