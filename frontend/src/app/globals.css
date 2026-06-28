@@ -1,26 +1,310 @@
+/* ============================================
+   RAJVATI FASHION — CENTRALIZED GLOBAL CSS
+   src/app/globals.css
+   ============================================ */
+
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================
+   LIGHT MODE VARIABLES (Rajvati Theme)
+   ============================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FDF9F7;          /* Warm Off-white */
+  --foreground: #1A1A1A;          /* Dark Text */
+  
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  
+  --primary: #6B1E2E;             /* Rajvati Maroon */
+  --on-primary: #FFFFFF;
+  --primary-container: #8B2E42;
+  --on-primary-container: #F9F5F2;
+  
+  --secondary: #1A1A1A;           /* Black */
+  --on-secondary: #FFFFFF;
+  
+  --accent: #C9A84C;              /* Rajvati Gold */
+  --accent-foreground: #FFFFFF;
+  
+  --surface: #F9F5F2;
+  --surface-container-low: #FFFFFF;
+  --surface-container: #FDF9F7;
+  --surface-container-high: #F3EBE6;
+  
+  --on-surface: #1A1A1A;
+  --on-surface-variant: #666666;
+  
+  --muted: #F3EBE6;
+  --muted-foreground: #666666;
+  
+  --border: #E5E0DB;
+  --input: #E5E0DB;
+  --ring: #6B1E2E;
+  
+  --destructive: #C0392B;
+  --destructive-foreground: #FFFFFF;
+  --success: #2D7A4F;
+  --warning: #E67E22;
+  
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
 }
 
+/* ============================================
+   DARK MODE VARIABLES (E-commerce / Premium)
+   ============================================ */
+.dark {
+  --background: #1A1616;          /* Deep Warm Dark */
+  --foreground: #F5F0EB;          /* Light Text */
+  
+  --card: #241D1D;                /* Dark Card */
+  --card-foreground: #F5F0EB;
+  
+  --popover: #241D1D;
+  --popover-foreground: #F5F0EB;
+  
+  --primary: #A23A50;             /* Brighter Maroon for contrast */
+  --on-primary: #FFFFFF;
+  --primary-container: #4A1320;
+  --on-primary-container: #F5F0EB;
+  
+  --secondary: #2E2626;
+  --on-secondary: #FFFFFF;
+  
+  --accent: #D4B86A;              /* Bright Gold */
+  --accent-foreground: #1A1A1A;
+  
+  --surface: #1A1616;
+  --surface-container-low: #1A1616;
+  --surface-container: #241D1D;
+  --surface-container-high: #2E2626;
+  
+  --on-surface: #F5F0EB;
+  --on-surface-variant: #A09890;
+  
+  --muted: #2E2626;
+  --muted-foreground: #A09890;
+  
+  --border: #3A3030;
+  --input: #3A3030;
+  --ring: #A23A50;
+}
+
+/* ============================================
+   TAILWIND v4 THEME ENGINE MAPPING
+   ============================================ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-surface: var(--surface);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================
+   BASE RESET
+   ============================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================
+   CUSTOM UTILITY CLASSES (PREMIUM FEEL)
+   ============================================ */
+
+/* Premium Card (E-commerce Style) */
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.dark .glass-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.glass-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Elegant Navbar */
+.glass-navbar {
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Elegant Sidebar */
+.glass-sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+}
+
+@media (min-width: 1024px) {
+  .glass-sidebar {
+    background: color-mix(in srgb, var(--surface) 95%, transparent);
+    backdrop-filter: blur(12px);
+  }
+}
+
+/* Glass Input */
+.glass-input {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  transition: all 0.2s ease-in-out;
+}
+
+.dark .glass-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-input:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 4px rgba(107, 30, 46, 0.1);
+  outline: none;
+}
+
+/* Solid Button (E-commerce Style) */
+.gradient-button {
+  background: var(--primary);
+  color: var(--on-primary);
+  transition: all 0.2s ease;
+}
+
+.gradient-button:hover {
+  background: var(--primary-container);
+  box-shadow: 0 4px 12px rgba(107, 30, 46, 0.2);
+}
+
+.button-glow:hover {
+  box-shadow: 0 4px 12px rgba(107, 30, 46, 0.2);
+}
+
+/* Text Gradient (Headings) */
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animations */
+.floating-widget {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-widget-delayed {
+  animation: float 6s ease-in-out 3s infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--primary) 40%, transparent);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--primary) 80%, transparent);
 }

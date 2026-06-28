@@ -9,9 +9,27 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.13.5",
+    "axios": "^1.18.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
+    "framer-motion": "^12.42.0",
+    "js-cookie": "^3.0.8",
+    "jspdf": "^4.2.1",
+    "lucide-react": "^1.22.0",
     "next": "16.2.9",
+    "next-pwa": "^5.6.0",
+    "next-themes": "^0.4.6",
+    "qrcode.react": "^4.2.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-google-recaptcha": "^3.1.0",
+    "react-hot-toast": "^2.6.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "slugify": "^1.6.9",
+    "tailwind-merge": "^3.6.0",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
