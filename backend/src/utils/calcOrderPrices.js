@@ -11,10 +11,14 @@ function calcOrderPrices(items, coupon = null) {
 
   // Coupon discount (additional)
   if (coupon) {
-    if (coupon.type === 'percent') {
-      discount += (subtotal - discount) * (coupon.value / 100);
+    if (coupon.discountType === 'Percentage') {
+      let couponDiscount = (subtotal - discount) * (coupon.discountValue / 100);
+      if (coupon.maxDiscount && couponDiscount > coupon.maxDiscount) {
+        couponDiscount = coupon.maxDiscount;
+      }
+      discount += couponDiscount;
     } else {
-      discount += coupon.value;
+      discount += coupon.discountValue;
     }
   }
 

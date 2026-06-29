@@ -11,10 +11,9 @@ const userSchema = new mongoose.Schema({
   adminRole: { type: mongoose.Schema.Types.ObjectId, ref: 'AdminRole' },
   isActive: { type: Boolean, default: true },
   isOtpVerified: { type: Boolean, default: false },
-  isHiringOtpVerified: { type: Boolean, default: false },
-  avatar: { type: String },
-  addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
-  wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }]
+  otp: { type: String },
+  otpExpiry: { type: Date },
+  avatar: { type: String }
 }, { timestamps: true });
 
 // Hash password before saving

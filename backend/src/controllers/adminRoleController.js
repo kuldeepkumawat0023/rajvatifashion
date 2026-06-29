@@ -151,10 +151,12 @@ exports.deleteAdminRole = async (req, res) => {
       });
     }
 
-    await role.deleteOne();
+    role.isActive = false;
+    await role.save();
 
     res.status(200).json({
       success: true,
+      message: 'Admin role soft-deleted successfully',
       data: {}
     });
   } catch (error) {

@@ -33,6 +33,7 @@ const orderSchema = new mongoose.Schema({
   couponCode: String,
   trackingId: String,
   deliveryDate: Date,
+  isActive: { type: Boolean, default: true }
 }, { timestamps: true });
 
 // Auto-generate order ID
