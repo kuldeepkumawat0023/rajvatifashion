@@ -42,7 +42,7 @@ exports.addReview = async (req, res, next) => {
 exports.getProductReviews = async (req, res, next) => {
   try {
     const reviews = await Review.find({ product: req.params.productId, isActive: true })
-      .populate('user', 'fullname avatar')
+      .populate('user', 'fullname profilePhoto')
       .sort('-createdAt');
 
     res.status(200).json({ success: true, count: reviews.length, data: reviews });

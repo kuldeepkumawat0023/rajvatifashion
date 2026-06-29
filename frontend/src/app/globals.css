@@ -11,46 +11,51 @@
    LIGHT MODE VARIABLES (Rajvati Theme)
    ============================================ */
 :root {
-  --background: #FDF9F7;          /* Warm Off-white */
-  --foreground: #1A1A1A;          /* Dark Text */
-  
+  --background: #FDF9F7;
+  /* Warm Off-white */
+  --foreground: #1A1A1A;
+  /* Dark Text */
+
   --card: #FFFFFF;
   --card-foreground: #1A1A1A;
-  
+
   --popover: #FFFFFF;
   --popover-foreground: #1A1A1A;
-  
-  --primary: #6B1E2E;             /* Rajvati Maroon */
+
+  --primary: #7D2B3C;
+  /* Rajvati Maroon */
   --on-primary: #FFFFFF;
-  --primary-container: #8B2E42;
+  --primary-container: #9A3650;
   --on-primary-container: #F9F5F2;
-  
-  --secondary: #1A1A1A;           /* Black */
+
+  --secondary: #1A1A1A;
+  /* Black */
   --on-secondary: #FFFFFF;
-  
-  --accent: #C9A84C;              /* Rajvati Gold */
+
+  --accent: #C9A84C;
+  /* Rajvati Gold */
   --accent-foreground: #FFFFFF;
-  
+
   --surface: #F9F5F2;
   --surface-container-low: #FFFFFF;
   --surface-container: #FDF9F7;
   --surface-container-high: #F3EBE6;
-  
+
   --on-surface: #1A1A1A;
   --on-surface-variant: #666666;
-  
+
   --muted: #F3EBE6;
   --muted-foreground: #666666;
-  
+
   --border: #E5E0DB;
   --input: #E5E0DB;
   --ring: #6B1E2E;
-  
+
   --destructive: #C0392B;
   --destructive-foreground: #FFFFFF;
   --success: #2D7A4F;
   --warning: #E67E22;
-  
+
   --radius-xs: 0.125rem;
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
@@ -63,37 +68,42 @@
    DARK MODE VARIABLES (E-commerce / Premium)
    ============================================ */
 .dark {
-  --background: #1A1616;          /* Deep Warm Dark */
-  --foreground: #F5F0EB;          /* Light Text */
-  
-  --card: #241D1D;                /* Dark Card */
+  --background: #1A1616;
+  /* Deep Warm Dark */
+  --foreground: #F5F0EB;
+  /* Light Text */
+
+  --card: #241D1D;
+  /* Dark Card */
   --card-foreground: #F5F0EB;
-  
+
   --popover: #241D1D;
   --popover-foreground: #F5F0EB;
-  
-  --primary: #A23A50;             /* Brighter Maroon for contrast */
+
+  --primary: #A23A50;
+  /* Brighter Maroon for contrast */
   --on-primary: #FFFFFF;
   --primary-container: #4A1320;
   --on-primary-container: #F5F0EB;
-  
+
   --secondary: #2E2626;
   --on-secondary: #FFFFFF;
-  
-  --accent: #D4B86A;              /* Bright Gold */
+
+  --accent: #D4B86A;
+  /* Bright Gold */
   --accent-foreground: #1A1A1A;
-  
+
   --surface: #1A1616;
   --surface-container-low: #1A1616;
   --surface-container: #241D1D;
   --surface-container-high: #2E2626;
-  
+
   --on-surface: #F5F0EB;
   --on-surface-variant: #A09890;
-  
+
   --muted: #2E2626;
   --muted-foreground: #A09890;
-  
+
   --border: #3A3030;
   --input: #3A3030;
   --ring: #A23A50;
@@ -105,50 +115,50 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-  
+
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  
+
   --color-primary: var(--primary);
   --color-on-primary: var(--on-primary);
   --color-primary-container: var(--primary-container);
   --color-on-primary-container: var(--on-primary-container);
-  
+
   --color-secondary: var(--secondary);
   --color-on-secondary: var(--on-secondary);
-  
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  
+
   --color-surface: var(--surface);
   --color-surface-container-low: var(--surface-container-low);
   --color-surface-container: var(--surface-container);
   --color-surface-container-high: var(--surface-container-high);
-  
+
   --color-on-surface: var(--on-surface);
   --color-on-surface-variant: var(--on-surface-variant);
-  
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  
+
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-success: var(--success);
   --color-warning: var(--warning);
-  
+
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
   --radius-xl: var(--radius-xl);
   --radius-2xl: var(--radius-2xl);
-  
+
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
 }
@@ -165,8 +175,13 @@
     @apply bg-background text-foreground overflow-x-hidden;
     font-family: var(--font-body);
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     font-weight: 600;
   }
@@ -267,9 +282,17 @@
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .animate-spin-slow {
@@ -277,14 +300,20 @@
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Scrollbars */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -294,17 +323,21 @@
   height: 4px;
   width: 4px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.02);
   border-radius: 4px;
 }
+
 .dark .custom-scrollbar::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.02);
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: color-mix(in srgb, var(--primary) 40%, transparent);
   border-radius: 4px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: color-mix(in srgb, var(--primary) 80%, transparent);
 }

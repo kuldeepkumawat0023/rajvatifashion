@@ -2,21 +2,80 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-  fullname: { type: String, required: true, trim: true },
-  email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-  password: { type: String, required: true, select: false },
-  countryCode: { type: String, default: '+91' },
-  phoneNumber: { type: String },
-  role: { type: String, enum: ['user', 'admin', 'super_admin'], default: 'user' },
-  adminRole: { type: mongoose.Schema.Types.ObjectId, ref: 'AdminRole' },
-  isActive: { type: Boolean, default: true },
-  isOtpVerified: { type: Boolean, default: false },
-  otp: { type: String },
-  otpExpiry: { type: Date },
-  avatar: { type: String }
-}, { timestamps: true });
+  fullname: {
+    type: String,
+    required: [true, 'Please add a full name'],
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: [true, 'Please add an email'],
+    unique: true,
+    lowercase: true,
+    trim: true,
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      'Please add a valid email',
+    ],
+  },
+  password: {
+    type: String,
+    required: [true, 'Please add a password'],
+    minlength: [6, 'Password must be at least 6 characters'],
+    select: false, // Don't return password by default
+  },
+  countryCode: {
+    type: String,
+    default: '+91'
+  },
+  phoneNumber: {
+    type: String,
+    required: [true, 'Please add a phone number'],
+  },
+  profilePhoto: {
+    type: String,
+  },
+  personalDetail: {
+    dob: { type: String, default: '' },
+    gender: { type: String, default: '' },
+  },
+  role: {
+    type: String,
+    enum: ['user', 'admin', 'super_admin'],
+    default: 'user'
+  },
+  adminRole: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'AdminRole'
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  isOtpVerified: {
+    type: Boolean,
+    default: false
+  },
+  otp: {
+    type: String,
+  },
+  otpExpiry: {
+    type: Date,
+  },
+  twoFactorEnabled: {
+    type: Boolean,
+    default: false
+  },
+  notificationPreferences: {
+    orderUpdates: { type: Boolean, default: true },
+    promoAlerts: { type: Boolean, default: true },
+    accountSecurity: { type: Boolean, default: true },
+  }
+}, { 
+  timestamps: true 
+});
 
-// Hash password before saving
+// Encrypt password using bcrypt before saving
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();

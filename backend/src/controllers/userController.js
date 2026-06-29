@@ -79,21 +79,20 @@ exports.updatePassword = async (req, res, next) => {
   }
 };
 
-// @desc    Upload Avatar (via Cloudinary, expected to be handled by multer middleware)
+// @desc    Upload profile photo
 // @route   POST /api/v1/users/me/avatar
 // @access  Private
 exports.uploadAvatar = async (req, res, next) => {
   try {
     if (!req.file) {
-      return res.status(400).json({ success: false, message: 'Please upload an image' });
+      return res.status(400).json({ success: false, message: 'Please upload a file' });
     }
     
-    // Cloudinary returns the URL in req.file.path if using multer-storage-cloudinary
     const avatarUrl = req.file.path;
 
     const user = await User.findByIdAndUpdate(
       req.user.id,
-      { avatar: avatarUrl },
+      { profilePhoto: avatarUrl },
       { new: true, runValidators: true }
     );
 

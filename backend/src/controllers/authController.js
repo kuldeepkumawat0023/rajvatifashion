@@ -163,16 +163,16 @@ exports.login = async (req, res, next) => {
 exports.googleLogin = async (req, res, next) => {
   try {
     const { idToken, accessToken } = req.body;
-    let email, fullname, avatar;
+    let email, fullname, profilePhoto;
 
     if (idToken) {
       const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
       const ticket = await client.verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT_ID });
       const payload = ticket.getPayload();
-      email = payload.email; fullname = payload.name; avatar = payload.picture;
+      email = payload.email; fullname = payload.name; profilePhoto = payload.picture;
     } else if (accessToken) {
       const response = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { Authorization: `Bearer ${accessToken}` } });
-      email = response.data.email; fullname = response.data.name; avatar = response.data.picture;
+      email = response.data.email; fullname = response.data.name; profilePhoto = response.data.picture;
     } else {
       return res.status(400).json({ success: false, message: 'Google token required' });
     }
@@ -182,15 +182,15 @@ exports.googleLogin = async (req, res, next) => {
     if (user && user.isActive === false) {
       user.isActive = true; await user.save();
     }
-    if (user && !user.avatar && avatar) {
-      user.avatar = avatar; await user.save();
+    if (user && !user.profilePhoto && profilePhoto) {
+      user.profilePhoto = profilePhoto; await user.save();
     }
 
     if (!user) {
       user = await User.create({
         fullname, email, phoneNumber: '0000000000', countryCode: '+91',
         password: Math.random().toString(36).slice(-8) + 'Aa1@',
-        avatar, role: 'user', isActive: true
+        profilePhoto, role: 'user', isActive: true
       });
     }
 
@@ -208,7 +208,7 @@ exports.googleLogin = async (req, res, next) => {
     res.status(200).json({
       success: true, statusCode: 200, message: 'Google login successful',
       data: {
-        user: { _id: user._id, fullname: user.fullname, email: user.email, avatar: user.avatar, role: user.role, permissions },
+        user: { _id: user._id, fullname: user.fullname, email: user.email, profilePhoto: user.profilePhoto, role: user.role, permissions },
         token, expiresAt: getExpiresAt()
       }
     });
