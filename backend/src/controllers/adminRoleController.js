@@ -1,4 +1,7 @@
 const AdminRole = require('../models/AdminRole');
+const User = require('../models/User');
+const sendEmail = require('../config/email');
+const { getAdminInviteEmail } = require('../utils/emailTemplates');
 const { ADMIN_DEFAULT_ROLES, ADMIN_PERMISSIONS } = require('../config/permissions');
 
 // @desc    Get all admin roles
@@ -114,13 +117,63 @@ exports.updateAdminRole = async (req, res) => {
 
     await role.save();
 
-    res.status(200).json({
-      success: true,
-      data: role
-    });
+    res.status(200).json({ success: true, data: role });
   } catch (error) {
-    console.error('Error updating admin role:', error);
-    res.status(500).json({ success: false, message: 'Server Error' });
+    next(error);
+  }
+};
+
+// @desc    Invite a new or existing user to be an admin
+// @route   POST /api/v1/admin-roles/invite
+// @access  Private (Requires MANAGE_ROLES or super_admin)
+exports.inviteAdmin = async (req, res, next) => {
+  try {
+    const { email, name, roleId } = req.body;
+
+    if (!email || !roleId) {
+      return res.status(400).json({ success: false, message: 'Email and role ID are required' });
+    }
+
+    const role = await AdminRole.findById(roleId);
+    if (!role) {
+      return res.status(404).json({ success: false, message: 'Role not found' });
+    }
+
+    let user = await User.findOne({ email });
+    const generatedPassword = Math.random().toString(36).slice(-8) + 'A1@'; // Secure temp password
+
+    if (!user) {
+      // Create new admin user
+      user = await User.create({
+        fullname: name || email.split('@')[0],
+        email: email.toLowerCase().trim(),
+        password: generatedPassword,
+        role: 'admin',
+        adminRole: role._id,
+        isOtpVerified: true,
+      });
+    } else {
+      // Upgrade existing user to admin
+      user.role = 'admin';
+      user.adminRole = role._id;
+      user.password = generatedPassword;
+      await user.save();
+    }
+
+    // Send Invite Email
+    try {
+      await sendEmail({
+        email: user.email,
+        subject: "You're Invited! Join Rajvati Fashion Workspace",
+        message: getAdminInviteEmail(user.fullname, user.email, generatedPassword, role.roleName),
+      });
+    } catch (err) {
+      console.log('Error sending invite email', err);
+    }
+
+    res.status(201).json({ success: true, message: 'Admin invited successfully', data: user });
+  } catch (error) {
+    next(error);
   }
 };
 

@@ -14,6 +14,7 @@ const adminRoleRoutes = require('./adminRoleRoutes');
 const wishlistRoutes = require('./wishlistRoutes');
 const dashboardRoutes = require('./dashboardRoutes');
 const addressRoutes = require('./addressRoutes');
+const notificationRoutes = require('./notificationRoutes');
 
 router.use('/auth', authRoutes);
 router.use('/products', productRoutes);
@@ -28,5 +29,6 @@ router.use('/admin-roles', adminRoleRoutes);
 router.use('/wishlist', wishlistRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/addresses', addressRoutes);
+router.use('/notifications', notificationRoutes);
 
 module.exports = router;

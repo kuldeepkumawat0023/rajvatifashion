@@ -1,4 +1,5 @@
 const Order = require('../models/Order');
+const Notification = require('../models/Notification');
 
 // @desc    Create new order
 // @route   POST /api/v1/orders
@@ -88,6 +89,22 @@ exports.updateOrderStatus = async (req, res, next) => {
     if (deliveryDate) order.deliveryDate = deliveryDate;
     
     await order.save();
+    
+    // Create Notification for the user
+    let title = `Order ${status}`;
+    let message = `Your order #${order.orderId} has been updated to ${status}.`;
+    if (status === 'Shipped') message = `Your order #${order.orderId} has been shipped. Track it soon!`;
+    if (status === 'Delivered') message = `Your order #${order.orderId} has been delivered. We hope you love it!`;
+    if (status === 'Cancelled') message = `Your order #${order.orderId} has been cancelled.`;
+
+    await Notification.create({
+      user: order.user,
+      title,
+      message,
+      type: 'Order',
+      actionUrl: `/account/orders/${order._id}`
+    });
+
     res.status(200).json({ success: true, data: order });
   } catch (error) {
     next(error);
@@ -110,3 +127,74 @@ exports.deleteOrder = async (req, res, next) => {
     next(error);
   }
 };
+
+// @desc    Request a return (User)
+// @route   POST /api/v1/orders/request-return/:id
+// @access  Private
+exports.requestReturn = async (req, res, next) => {
+  try {
+    const { reason } = req.body;
+    const order = await Order.findOne({ _id: req.params.id, user: req.user.id });
+    
+    if (!order) return res.status(404).json({ success: false, message: 'Order not found' });
+    
+    // Only delivered orders can be returned
+    if (order.status !== 'Delivered') {
+      return res.status(400).json({ success: false, message: 'Only delivered orders can be returned' });
+    }
+    
+    if (order.returnStatus !== 'Not Requested' && order.returnStatus !== 'Rejected') {
+      return res.status(400).json({ success: false, message: 'Return already requested or processed' });
+    }
+    
+    order.returnStatus = 'Requested';
+    order.returnReason = reason || 'No reason provided';
+    await order.save();
+    
+    res.status(200).json({ success: true, message: 'Return request submitted successfully', data: order });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Process a return (Admin)
+// @route   PUT /api/v1/orders/process-return/:id
+// @access  Private/Admin
+exports.processReturn = async (req, res, next) => {
+  try {
+    const { returnStatus } = req.body; // e.g., 'Approved', 'Rejected', 'Refunded'
+    
+    const validStatuses = ['Approved', 'Rejected', 'Refunded'];
+    if (!validStatuses.includes(returnStatus)) {
+       return res.status(400).json({ success: false, message: 'Invalid return status' });
+    }
+
+    const order = await Order.findById(req.params.id);
+    if (!order) return res.status(404).json({ success: false, message: 'Order not found' });
+    
+    if (order.returnStatus === 'Not Requested') {
+      return res.status(400).json({ success: false, message: 'No return requested for this order' });
+    }
+    
+    order.returnStatus = returnStatus;
+    if (returnStatus === 'Refunded') {
+       order.status = 'Returned'; // Update main status
+    }
+    
+    await order.save();
+    
+    // Notify user about return status
+    await Notification.create({
+      user: order.user,
+      title: `Return ${returnStatus}`,
+      message: `Your return request for order #${order.orderId} has been ${returnStatus.toLowerCase()}.`,
+      type: 'Order',
+      actionUrl: `/account/orders/${order._id}`
+    });
+
+    res.status(200).json({ success: true, message: `Return request ${returnStatus}`, data: order });
+  } catch (error) {
+    next(error);
+  }
+};
+

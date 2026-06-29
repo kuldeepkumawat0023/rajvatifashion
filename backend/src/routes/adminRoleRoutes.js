@@ -9,7 +9,8 @@ const {
   getAdminRole,
   createAdminRole,
   updateAdminRole,
-  deleteAdminRole
+  deleteAdminRole,
+  inviteAdmin
 } = require('../controllers/adminRoleController');
 
 router.use(protect);
@@ -22,5 +23,6 @@ router.get('/single/:id', getAdminRole);
 router.post('/add', createAdminRole);
 router.put('/update/:id', updateAdminRole);
 router.delete('/delete/:id', deleteAdminRole);
+router.post('/invite', inviteAdmin);
 
 module.exports = router;

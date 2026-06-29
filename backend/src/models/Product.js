@@ -11,8 +11,15 @@ const productSchema = new mongoose.Schema({
   tags: [String],
   sizes: [{ type: String, enum: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'Free Size'] }],
   colors: [{ type: String }],
+  variants: [{
+    sku: { type: String, required: true },
+    size: { type: String, required: true },
+    color: { type: String, required: true },
+    stock: { type: Number, default: 0, min: 0 },
+    priceOverride: { type: Number } // If specific size/color costs more
+  }],
   material: { type: String, default: 'Cotton' },
-  stock: { type: Number, default: 0, min: 0 },
+  totalStock: { type: Number, default: 0, min: 0 },
   sku: { type: String },
   isFeatured: { type: Boolean, default: false },
   isBestSeller: { type: Boolean, default: false },

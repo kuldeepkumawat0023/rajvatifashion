@@ -10,7 +10,9 @@ const {
   getOrderById,
   getOrders,
   updateOrderStatus,
-  deleteOrder
+  deleteOrder,
+  requestReturn,
+  processReturn
 } = require('../controllers/orderController');
 
 router.use(protect);
@@ -19,11 +21,13 @@ router.use(protect);
 router.post('/add', createOrder);
 router.get('/myorders', getMyOrders);
 router.get('/single/:id', getOrderById);
+router.post('/request-return/:id', requestReturn);
 
 // Admin routes
 router.use(requirePermission(ADMIN_PERMISSIONS.MANAGE_ORDERS));
 router.get('/all', getOrders);
 router.put('/update-status/:id', updateOrderStatus);
+router.put('/process-return/:id', processReturn);
 router.delete('/delete/:id', deleteOrder);
 
 module.exports = router;

@@ -5,6 +5,8 @@ const orderItemSchema = new mongoose.Schema({
   name: String,
   image: String,
   size: String,
+  color: String,
+  variantSku: String,
   qty: Number,
   price: Number,
 });
@@ -23,9 +25,15 @@ const orderSchema = new mongoose.Schema({
   razorpayPaymentId: String,
   status: {
     type: String,
-    enum: ['Placed', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled'],
+    enum: ['Placed', 'Confirmed', 'Shipped', 'Delivered', 'Cancelled', 'Returned'],
     default: 'Placed',
   },
+  returnStatus: {
+    type: String,
+    enum: ['Not Requested', 'Requested', 'Approved', 'Rejected', 'Refunded'],
+    default: 'Not Requested'
+  },
+  returnReason: String,
   subtotal: Number,
   discount: { type: Number, default: 0 },
   shipping: { type: Number, default: 0 },

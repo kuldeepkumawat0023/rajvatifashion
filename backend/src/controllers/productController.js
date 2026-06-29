@@ -121,6 +121,18 @@ exports.createProduct = async (req, res, next) => {
     if (typeof productData.tags === 'string') productData.tags = productData.tags.split(',').map(t => t.trim());
     if (typeof productData.sizes === 'string') productData.sizes = productData.sizes.split(',').map(s => s.trim());
     if (typeof productData.colors === 'string') productData.colors = productData.colors.split(',').map(c => c.trim());
+    
+    // Parse variants if sent as JSON string
+    if (typeof productData.variants === 'string') {
+      try { productData.variants = JSON.parse(productData.variants); } catch (e) { }
+    }
+    
+    // Calculate totalStock based on variants
+    if (productData.variants && Array.isArray(productData.variants)) {
+      productData.totalStock = productData.variants.reduce((sum, v) => sum + (Number(v.stock) || 0), 0);
+    } else {
+      productData.totalStock = productData.stock || 0;
+    }
 
     // Handle multiple image uploads
     const imageUrls = [];
@@ -156,6 +168,16 @@ exports.updateProduct = async (req, res, next) => {
     if (typeof updateData.tags === 'string') updateData.tags = updateData.tags.split(',').map(t => t.trim());
     if (typeof updateData.sizes === 'string') updateData.sizes = updateData.sizes.split(',').map(s => s.trim());
     if (typeof updateData.colors === 'string') updateData.colors = updateData.colors.split(',').map(c => c.trim());
+
+    if (typeof updateData.variants === 'string') {
+      try { updateData.variants = JSON.parse(updateData.variants); } catch (e) { }
+    }
+    
+    if (updateData.variants && Array.isArray(updateData.variants)) {
+      updateData.totalStock = updateData.variants.reduce((sum, v) => sum + (Number(v.stock) || 0), 0);
+    } else if (updateData.stock !== undefined) {
+      updateData.totalStock = updateData.stock;
+    }
 
     let imageUrls = product.images || [];
 
